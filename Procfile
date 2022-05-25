@@ -1,0 +1,1 @@
+web: gunicorn GenZ_Ed.wsgi --log-file -
