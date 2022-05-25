@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from . import views
-from django.conf.urls import url
+# from django.conf.urls import re_path
 from django.views.static import serve
 from django.conf import settings
 from django.urls import include
@@ -26,7 +26,7 @@ urlpatterns = [
     path('', views.index, name = 'index'),
     # path('', include("Home.urls")),
 
-      url(r'^media/(?P<path>.*)$', serve,{'document_root':       settings.MEDIA_ROOT}), 
-    url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}), 
+      path(r'^media/(?P<path>.*)$', serve,{'document_root':       settings.MEDIA_ROOT}), 
+    path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}), 
 ]
 
