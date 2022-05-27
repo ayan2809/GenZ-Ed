@@ -82,4 +82,4 @@ def profile(request):
                 return render(request, template_name='studentprofile.html', context={'username': username})
                 # return redirect('/studentprofile?username='+username)
 
-    # return render(request, 'activate.html')
+    return render(request, 'activate.html')
