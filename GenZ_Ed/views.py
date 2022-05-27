@@ -68,7 +68,7 @@ def profile(request):
         username= request.POST.get("signInUsername")
         email = request.POST.get("signInEmail")
         password= request.POST.get("signInPassword")
-        print(username,email,password)
+        # print(username,email,password)
         if(username=="" or email=="" or password==""):
             return redirect('/failure')
         else:
