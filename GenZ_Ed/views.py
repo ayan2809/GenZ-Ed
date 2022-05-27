@@ -1,4 +1,5 @@
 from pdb import post_mortem
+from tkinter import E
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import render, redirect
@@ -21,8 +22,11 @@ def index(request):
 def authentication(request):
     return render(request, 'login_signup.html')
 
-def profile(request):
-    return render(request, 'profile.html')
+# def teacherprofile(request):
+#     return render(request, 'teacherprofile.html')
+
+# def studentprofile(request):
+#     return render(request, 'studentprofile.html')
 
 def failure(request):
     return render(request, 'failure.html')
@@ -43,14 +47,14 @@ def signup(request):
             if status==False:
                 return redirect('/failure')
             else:
-                return redirect('/profile')
+                return render(request, template_name='teacherprofile.html', context={'username': username})
         else:
             status= insertStudentData(username, fname, lname, email, pass1)
 
             if status==False:
                 return redirect('/failure')
             else:
-                return redirect('/profile')
+                return render(request, template_name='studentprofile.html', context={'username': username})
         
         
         
@@ -59,5 +63,23 @@ def signup(request):
 def activate(request):
     return render(request, 'activate.html')
 
-def signin(request):
-    return render(request, 'activate.html')
+def profile(request):
+    if request.method == "POST":
+        username= request.POST.get("signInUsername")
+        email = request.POST.get("signInEmail")
+        password= request.POST.get("signInPassword")
+        print(username,email,password)
+        if(username=="" or email=="" or password==""):
+            return redirect('/failure')
+        else:
+            status= signInAuthentication(username, email, password)
+            if status==0:
+                return redirect('/failure')
+            elif status==1:
+                return render(request, template_name='teacherprofile.html', context={'username': username})
+                # return redirect('/teacherprofile?username='+username)
+            elif status==2:
+                return render(request, template_name='studentprofile.html', context={'username': username})
+                # return redirect('/studentprofile?username='+username)
+
+    # return render(request, 'activate.html')

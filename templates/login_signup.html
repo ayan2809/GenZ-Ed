@@ -102,20 +102,28 @@
       <div id="login">
         <h1>Welcome Back!</h1>
 
-        <form action="/" method="post">
+        <form action="/profile" method="post">
+          {% csrf_token %}
+
+          <div class="field-wrap">
+            <label>
+              Username<span class="req">*</span>
+            </label>
+            <input type="text" id = "signInUsername" name="signInUsername" required autocomplete="off" />
+          </div>
 
           <div class="field-wrap">
             <label>
               Email Address<span class="req">*</span>
             </label>
-            <input type="email" required autocomplete="off" />
+            <input type="email" id = "signInEmail" name="signInEmail" required autocomplete="off" />
           </div>
 
           <div class="field-wrap">
             <label>
               Password<span class="req">*</span>
             </label>
-            <input type="password" required autocomplete="off" />
+            <input type="password" id = "signInPassword" name="signInPassword" required autocomplete="off" />
           </div>
 
           <p class="forgot"><a href="#">Forgot Password?</a></p>

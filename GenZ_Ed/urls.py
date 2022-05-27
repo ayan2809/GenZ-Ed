@@ -27,6 +27,8 @@ urlpatterns = [
     path('authentication/', views.authentication, name = 'authentication'),
     path('signup', views.signup, name='signup'),
     path('profile', views.profile, name='profile'),
+    # path('teacherprofile', views.teacherprofile, name='teacherprofile'),
+    # path('studentprofile', views.studentprofile, name='studentprofile'),
     path('logout', views.logout, name='logout'),
     path('failure', views.failure, name='failure'),
     # path('', include("Home.urls")),

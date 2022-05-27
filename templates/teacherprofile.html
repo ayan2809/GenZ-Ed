@@ -4,12 +4,12 @@
 <head>
   <meta charset="UTF-8">
   <title>GenZ-Ed</title>
-  <link rel="stylesheet" href="{% static 'profile/style.css' %}">
+  <link rel="stylesheet" href="{% static 'teacherprofile/style.css' %}">
 
 </head>
 <body>
 <!-- partial:index.partial.html -->
-<script src="{% static 'profile/b99e675b6e.js' %}"></script>
+<script src="{% static 'teacherprofile/b99e675b6e.js' %}"></script>
 
 <div class="wrapper">
   <div class="top_navbar">
@@ -22,7 +22,7 @@
     </div>
     <div class="menu">
       <div class="logo">
-        Coding Market
+        Genz Education
       </div>
       <div class="right_menu">
         <ul>
@@ -30,7 +30,7 @@
             <div class="profile_dd">
                <div class="dd_item">Profile</div>
                <div class="dd_item">Change Password</div>
-               <div class="dd_item">Logout</div>
+               <a href='/'><div class="dd_item">Logout</div></a>
             </div>
           </li>
         </ul>
@@ -47,7 +47,8 @@
               </div>
               <div class="profile_info">
                  <p>Welcome</p>
-                 <p class="profile_name">Alex John</p>
+                 <p class="profile_name">{{ username }}</p>
+                   <!-- Alex John</p> -->
               </div>
             </div>
             <ul>
@@ -114,7 +115,7 @@
   
 </div>
 <!-- partial -->
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script><script  src="{% static 'profile/script.js' %}"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script><script  src="{% static 'teacherprofile/script.js' %}"></script>
 
 </body>
 </html>

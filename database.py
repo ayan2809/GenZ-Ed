@@ -34,4 +34,12 @@ def insertStudentData(username, firstname, lastname, email, password):
     return False
 
 def signInAuthentication(username, email, password):
-    return True
+    # query to check if the database has a particular username
+    query1 = client.teacher.users.count_documents({"username": username, "email": email, "password": password})
+    # query to check if the database has a particular email
+    query2 = client.student.users.count_documents({"username": username, "email": email, "password": password})
+    if(query1==1):
+        return 1
+    elif(query2==2):
+        return 2
+    return 0
