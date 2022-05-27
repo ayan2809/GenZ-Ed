@@ -9,11 +9,11 @@ $(".top_navbar .fas").click(function(){
 });
 
 
-var btn1=document.getElementById("dashboardButton");
-var btn2 = document.getElementById("formsButton");
-var btn3 = document.getElementById("uiElementButton");
-var btn4 = document.getElementById("chartButton");
-var btn5 = document.getElementById("tablesButton");
+var btn1=document.getElementById("profileButton");
+var btn2 = document.getElementById("classesButton");
+var btn3 = document.getElementById("materialButton");
+var btn4 = document.getElementById("insightsButton");
+var btn5 = document.getElementById("settingsButton");
 if(btn1!=null){
   btn1.addEventListener("click", function() {
     btn1.className='active';

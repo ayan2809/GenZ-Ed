@@ -20,12 +20,6 @@ def index(request):
 def authentication(request):
     return render(request, 'login_signup.html')
 
-# def teacherprofile(request):
-#     return render(request, 'teacherprofile.html')
-
-# def studentprofile(request):
-#     return render(request, 'studentprofile.html')
-
 def failure(request):
     return render(request, 'failure.html')
 def signup(request):
@@ -45,14 +39,14 @@ def signup(request):
             if status==False:
                 return redirect('/failure')
             else:
-                return render(request, template_name='teacherprofile.html', context={'username': username})
+                return render(request, template_name='teacherprofile.html', context={'username': username,'email':email, 'name':fname+" "+lname})
         else:
             status= insertStudentData(username, fname, lname, email, pass1)
 
             if status==False:
                 return redirect('/failure')
             else:
-                return render(request, template_name='studentprofile.html', context={'username': username})
+                return render(request, template_name='studentprofile.html', context={'username': username,'email':email, 'name':fname+" "+lname})
         
         
         
@@ -74,10 +68,14 @@ def profile(request):
             if status==0:
                 return redirect('/failure')
             elif status==1:
-                return render(request, template_name='teacherprofile.html', context={'username': username})
-                # return redirect('/teacherprofile?username='+username)
+                fname= getTeacherFname(username)
+                lname= getTeacherLname(username)
+                return render(request, template_name='teacherprofile.html', context={'username': username,'email':email, 'name':fname+" "+lname})
+                
             elif status==2:
-                return render(request, template_name='studentprofile.html', context={'username': username})
-                # return redirect('/studentprofile?username='+username)
+                fname= getStudentFname(username)
+                lname= getStudentLname(username)
+                return render(request, template_name='studentprofile.html', context={'username': username,'email':email, 'name':fname+" "+lname})
+                
 
     return render(request, 'activate.html')

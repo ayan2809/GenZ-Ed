@@ -1,121 +1,181 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>GenZ-Ed</title>
   <link rel="stylesheet" href="{% static 'teacherprofile/style.css' %}">
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'>
 
 </head>
+
 <body>
-<!-- partial:index.partial.html -->
-<script src="{% static 'teacherprofile/b99e675b6e.js' %}"></script>
+  <!-- partial:index.partial.html -->
+  <script src="{% static 'teacherprofile/b99e675b6e.js' %}"></script>
 
-<div class="wrapper">
-  <div class="top_navbar">
-    <div class="hamburger">
-       <div class="hamburger__inner">
-         <div class="one"></div>
-         <div class="two"></div>
-         <div class="three"></div>
-       </div>
-    </div>
-    <div class="menu">
-      <div class="logo">
-        Genz Education
+  <div class="wrapper">
+    <div class="top_navbar">
+      <div class="hamburger">
+        <div class="hamburger__inner">
+          <div class="one"></div>
+          <div class="two"></div>
+          <div class="three"></div>
+        </div>
       </div>
-      <div class="right_menu">
-        <ul>
-          <li><i class="fas fa-user"></i>
-            <div class="profile_dd">
-               <div class="dd_item">Profile</div>
-               <div class="dd_item">Change Password</div>
-               <a href='/'><div class="dd_item">Logout</div></a>
-            </div>
-          </li>
-        </ul>
+      <div class="menu">
+        <div class="logo">
+          Genz Education
+        </div>
+        <div class="right_menu">
+          <ul>
+            <li><i class="fas fa-user"></i>
+              <div class="profile_dd">
+                <div class="dd_item">Profile</div>
+                <div class="dd_item">Change Password</div>
+                <a href='/'>
+                  <div class="dd_item">Logout</div>
+                </a>
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
-    
-  <div class="main_container" id="main_container">
+
+    <div class="main_container" id="main_container">
       <div class="sidebar">
-          <div class="sidebar__inner">
-            <div class="profile">
-              <div class="img">
-                <img src="https://i.imgur.com/Ctwf8HA.png" alt="profile_pic">
+        <div class="sidebar__inner">
+          <div class="profile">
+            <div class="img">
+              <img src="{% static 'teacherprofile/8600.jpg' %}" alt="profile_pic">
+            </div>
+            <div class="profile_info">
+              <p>Welcome</p>
+              <p class="profile_name" id="profile_name">{{ username }}</p>
+            </div>
+          </div>
+          <ul>
+            <li>
+              <div>
+                <a href="#" class="active" id="profileButton" name="profileButton">
+                  <span class="icon"><i class="fas fa-dice-d6"></i></span>
+                  <span class="title">Profile</span>
+                </a>
               </div>
-              <div class="profile_info">
-                 <p>Welcome</p>
-                 <p class="profile_name">{{ username }}</p>
-                   <!-- Alex John</p> -->
+            </li>
+            <li>
+              <a href="#" class="btn" id="classesButton" name="classesButton">
+                <span class="icon"><i class="fab fa-delicious"></i></span>
+                <span class="title">Classes</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="btn" id="materialButton" name="materialButton">
+                <span class="icon"><i class="fas fa-file-export"></i></span>
+                <span class="title">Materials</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="btn" id="insightsButton" name="insightsButton">
+                <span class="icon"><i class="fas fa-chart-pie"></i></span>
+                <span class="title">Insights</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="btn" id="settingsButton" name="settingsButton">
+                <span class="icon"><i class="fas fa-cog"></i></span>
+                <span class="title">Settings</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="container" id="container">
+
+
+        <div class="item1" id="item1" style="display:block;">
+          <!-- Dashboard Text -->
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12 px-5 py-5">
+                <div class="user-profile">
+                  <div class="d-flex">
+                    <!-- <div>
+                      <img src="{% static 'teacherprofile/8600.jpg' %}" alt="User profile" style="width:100px; height:100px; object-fit:cover">
+                    </div> -->
+                    <div style="width:100%;margin-left:20px">
+                      <table class="table table-bordered">
+          
+                    <!-- add your own data -->
+          
+                        <!--tr 1 -->
+                        <tr>
+                          <td class="text-capitalize" style="background:#bfbbbb;color:#403a3a">Name</td>
+                          <td id="teacherName" class="teacherName">{{name}}</td>
+                        </tr>
+          
+                        <!--tr 2 -->
+                        <tr>
+                          <td class="text-capitalize" style="background:#bfbbbb;color:#403a3a">email</td>
+                          <td id="teacherEmail" class="teacherEmail">{{email}}</td>
+                        </tr>
+          
+                        <!--tr 3 -->
+                        <tr>
+                          <td class="text-capitalize" style="background:#bfbbbb;color:#403a3a">Teacher ID</td>
+                          <td id="teacherUsername" class="teacherUsername">{{username}}</td>
+                        </tr>
+          
+                        <!--tr 4 -->
+                        <tr>
+                          <td class="text-capitalize" style="background:#bfbbbb;color:#403a3a">Qualifications</td>
+                          <td id="teacherQualification" class="teacherQualification"></td>
+                        </tr>
+          
+                         <!--tr 5 -->
+                         <tr>
+                          <td class="text-capitalize" style="background:#bfbbbb;color:#403a3a">School</td>
+                          <td id="teacherSchool" class="teacherSchool"></td>
+                        </tr>
+          
+                         <!--tr 6 -->
+                        <tr>
+                          <td class="text-capitalize" style="background:#bfbbbb;color:#403a3a">Address</td>
+                          <td id="teacherAddress" class="teacherAddress"></td>
+                        </tr>     
+                    </table>
+                    </div>
+                  </div> 
+                </div>
               </div>
             </div>
-            <ul>
-              <li>
-                <div>
-                <a href="#" class="active" id="dashboardButton" name="dashboardButton">
-                  <span class="icon"><i class="fas fa-dice-d6"></i></span>
-                  <span class="title">Dashboard</span>
-                </a>
-              </div>
-              </li>
-              <li>
-                <a href="#" class="btn" id="formsButton" name="formsButton">
-                  <span class="icon"><i class="fab fa-delicious"></i></span>
-                  <span class="title">Forms </span>
-                </a>
-              </li>
-              <li>
-                <a href="#" 
-                class="btn" id="uiElementButton" name="uiElementButton">
-                  <span class="icon"><i class="fab fa-elementor"></i></span>
-                  <span class="title">UI Elements</span>
-                </a>
-              </li>
-              <li>
-                <a href="#" class="btn" id="chartButton" name="chartButton">
-                  <span class="icon"><i class="fas fa-chart-pie"></i></span>
-                  <span class="title">Charts</span>
-                </a>
-              </li>
-              <li>
-                <a href="#" class="btn" id="tablesButton" name="tablesButton">
-                  <span class="icon"><i class="fas fa-border-all"></i></span>
-                  <span class="title">Tables</span>
-                </a>
-              </li>
-            </ul>
           </div>
-      </div>
-      <div class="container" id ="container">
-        
-      
-      <div class="item1" id="item1" style="display:none;" >
-        Dashboard Text 
-      </div>
+        </div>
 
-      <div class="inactive" id="item2" style="display:none;">
-        Forms Text
-      </div>
+        <div class="inactive" id="item2" style="display:none;">
+          Forms Text
+        </div>
 
-      <div class="inactive" id="item3" style="display:none;">
-        UI Element Text
-      </div>
+        <div class="inactive" id="item3" style="display:none;">
+          UI Element Text
+        </div>
 
-      <div class="inactive" id="item4" style="display:none;">
-        Chart Element
-      </div>
+        <div class="inactive" id="item4" style="display:none;">
+          Chart Element
+        </div>
 
-      <div class="inactive" id="item5" style="display:none;">
-        Tables Element Text
+        <div class="inactive" id="item5" style="display:none;">
+          Tables Element Text
+        </div>
       </div>
+    </div>
+
   </div>
-</div>
-  
-</div>
-<!-- partial -->
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script><script  src="{% static 'teacherprofile/script.js' %}"></script>
+  <!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+  <script src="{% static 'teacherprofile/script.js' %}"></script>
 
 </body>
+
 </html>

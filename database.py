@@ -40,6 +40,19 @@ def signInAuthentication(username, email, password):
     query2 = client.student.users.count_documents({"username": username, "email": email, "password": password})
     if(query1==1):
         return 1
-    elif(query2==2):
+    elif(query2==1):
         return 2
     return 0
+
+def getTeacherFname(username):
+    return client.teacher.users.find_one({"username": username})['firstname']
+
+def getTeacherLname(username):
+    return client.teacher.users.find_one({"username": username})['lastname']
+
+def getStudentFname(username):
+    return client.student.users.find_one({"username": username})['firstname']
+
+def getStudentLname(username):
+    return client.student.users.find_one({"username": username})['lastname']
+
