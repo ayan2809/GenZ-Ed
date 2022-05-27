@@ -19,3 +19,16 @@ Install the required packages in the virtual environment
 ```bash
 pip install -r requirements.txt
 ```
+### Running the Application
+Apply the django migrations
+```bash
+python manage.py migrate
+```
+Collect the static files with modified timestamp
+```bash
+python manage.py collectstatic
+```
+Run the web server on the local machine
+```bash
+python manage.py runserver
+```
