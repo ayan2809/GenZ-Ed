@@ -1,5 +1,3 @@
-from pdb import post_mortem
-from tkinter import E
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import render, redirect
