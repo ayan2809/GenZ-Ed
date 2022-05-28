@@ -105,47 +105,47 @@
                     </div> -->
                     <div style="width:100%;margin-left:20px">
                       <table class="table table-bordered">
-          
-                    <!-- add your own data -->
-          
+
+                        <!-- add your own data -->
+
                         <!--tr 1 -->
                         <tr>
                           <td class="text-capitalize" style="background:#bfbbbb;color:#403a3a">Name</td>
                           <td id="teacherName" class="teacherName">{{name}}</td>
                         </tr>
-          
+
                         <!--tr 2 -->
                         <tr>
                           <td class="text-capitalize" style="background:#bfbbbb;color:#403a3a">email</td>
                           <td id="teacherEmail" class="teacherEmail">{{email}}</td>
                         </tr>
-          
+
                         <!--tr 3 -->
                         <tr>
                           <td class="text-capitalize" style="background:#bfbbbb;color:#403a3a">Teacher ID</td>
                           <td id="teacherUsername" class="teacherUsername">{{username}}</td>
                         </tr>
-          
+
                         <!--tr 4 -->
                         <tr>
                           <td class="text-capitalize" style="background:#bfbbbb;color:#403a3a">Qualifications</td>
                           <td id="teacherQualification" class="teacherQualification"></td>
                         </tr>
-          
-                         <!--tr 5 -->
-                         <tr>
+
+                        <!--tr 5 -->
+                        <tr>
                           <td class="text-capitalize" style="background:#bfbbbb;color:#403a3a">School</td>
                           <td id="teacherSchool" class="teacherSchool"></td>
                         </tr>
-          
-                         <!--tr 6 -->
+
+                        <!--tr 6 -->
                         <tr>
                           <td class="text-capitalize" style="background:#bfbbbb;color:#403a3a">Address</td>
                           <td id="teacherAddress" class="teacherAddress"></td>
-                        </tr>     
-                    </table>
+                        </tr>
+                      </table>
                     </div>
-                  </div> 
+                  </div>
                 </div>
               </div>
             </div>
@@ -153,11 +153,76 @@
         </div>
 
         <div class="inactive" id="item2" style="display:none;">
-          Forms Text
+          <form class="row g-3">
+            <div class="col-auto">
+              <label for="staticEmail2" class="visually-hidden">Username</label>
+              <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value={{username}}>
+            </div>
+            <div class="col-auto">
+              <label for="inputPassword2" class="visually-hidden">Class Number</label>
+              <input type="text" class="form-control" id="inputPassword2" placeholder="Class Number">
+            </div>
+            <div class="col-auto">
+              <button type="submit" class="btn btn-primary mb-3">Confirm Class Number</button>
+            </div>
+          </form>
         </div>
 
         <div class="inactive" id="item3" style="display:none;">
-          UI Element Text
+
+          <form>
+            <div class="container d-grid mx-auto">
+              <div class="row row-cols-2">
+                <div class="d-grid mx-auto">
+                  <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                    <option selected>Select the Grade</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                </div>
+                <div class="d-grid mx-auto">
+                  <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                    <option selected>Select the Class Number</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                </div>
+
+                <div class="d-grid mx-auto">
+                  <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                    <option selected>Select the Course</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                </div>
+                <div class="d-grid mx-auto">
+                  <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                    <option selected>Select the module</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                </div>
+              </div>
+
+              <br>
+              <br>
+
+              <div>
+                <label for="formFileLg" class="form-label">Choose the File to Upload</label>
+                <input class="form-control form-control-lg" id="formFileLg" type="file">
+              </div>
+
+              <br>
+              <br>
+
+              <div class="d-grid mx-auto">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+          </form>
         </div>
 
         <div class="inactive" id="item4" style="display:none;">
