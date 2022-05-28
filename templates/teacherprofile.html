@@ -285,7 +285,7 @@
           }
           else {
             document.getElementById('ErrorMessage').innerHTML = '<div class="alert alert-success" role="alert">Data Entered Successfully</div>';
-            var url = 'https://genz-ed.herokuapp.com//UpdateClassNumber/';
+            var url = '/UpdateClassNumber/';
 
             fetch(url, {
               method: 'POST',
@@ -311,7 +311,7 @@
 
           var username = document.getElementById('staticEmail2').value;
 
-          var url = 'https://genz-ed.herokuapp.com//GetClassNumbers/'
+          var url = '/GetClassNumbers/'
           fetch(url, {
             method: 'POST',
             headers: {

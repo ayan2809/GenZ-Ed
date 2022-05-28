@@ -22,10 +22,12 @@ from django.conf import settings
 from django.urls import include
 
 urlpatterns = [
-    path('',views.apiOverview, name = "api-overview"),
+    # path('',views.apiOverview, name = "api-overview"),
     path('admin/', admin.site.urls),
     path('', views.index, name = 'index'),
     path('authentication/', views.authentication, name = 'authentication'),
+    path('GetClassNumbers', views.GetClassNumbers, name = 'GetClassNumbers'),
+    path('UpdateClassNumber', views.UpdateClassNumber, name = 'UpdateClassNumber'),
     path('signup', views.signup, name='signup'),
     path('profile', views.profile, name='profile'),
     # path('teacherprofile', views.teacherprofile, name='teacherprofile'),
