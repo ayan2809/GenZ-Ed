@@ -155,7 +155,26 @@
         </div>
 
         <div class="inactive" id="item2" style="display:none;">
-          Forms Text
+          <form class="row g-3">
+            <div class="col-auto">
+              <label for="staticEmail2" class="visually-hidden">Username</label>
+              <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value={{username}}>
+            </div>
+            <div class="col-auto">
+              <label for="inputPassword2" class="visually-hidden">Class Number</label>
+              <input type="text" class="form-control" id="inputPassword2" placeholder="Class Number">
+            </div>
+            <div class="col-auto">
+              <button type="submit" class="btn btn-primary mb-3">Confirm Class Number</button>
+            </div>
+          </form>
+          <br>
+          <!-- <div class="container d-grid mx-auto"> -->
+            
+          <button type="button" class="btn btn-secondary btn-lg"><span class="align-middle">Display Classes</span></button>
+          <!-- </div> -->
+
+
         </div>
 
 

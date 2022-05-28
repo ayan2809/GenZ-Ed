@@ -56,3 +56,13 @@ def getStudentFname(username):
 def getStudentLname(username):
     return client.student.users.find_one({"username": username})['lastname']
 
+def insertClassNumber(username, classnumber):
+    # return client.teacher.users.update({"username": username}, {"$set": {"classnumber": classnumber}})
+    if client.teacher.teacherCourses.count_documents({"username": username}) == 0:
+        return client.teacher.teacherCourses.insert_one({"username": username, "classnumber": [classnumber]})
+    else:
+        return client.teacher.teacherCourses.update_one({"username": username}, {"$push": {"classnumber": classnumber}})
+
+def getClassNumbers(username):
+    return client.teacher.teacherCourses.find_one({"username": username})['classnumber']
+

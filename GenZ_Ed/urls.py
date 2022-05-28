@@ -22,6 +22,7 @@ from django.conf import settings
 from django.urls import include
 
 urlpatterns = [
+    path('',views.apiOverview, name = "api-overview"),
     path('admin/', admin.site.urls),
     path('', views.index, name = 'index'),
     path('authentication/', views.authentication, name = 'authentication'),
@@ -31,6 +32,9 @@ urlpatterns = [
     # path('studentprofile', views.studentprofile, name='studentprofile'),
     path('logout', views.logout, name='logout'),
     path('failure', views.failure, name='failure'),
+    
+    path('UpdateClassNumber/',views.UpdateClassNumber, name = "UpdateClassNumber"),
+    path('GetClassNumbers/',views.GetClassNumbers, name = "GetClassNumbers"),
     # path('', include("Home.urls")),
 
       path(r'^media/(?P<path>.*)$', serve,{'document_root':       settings.MEDIA_ROOT}), 

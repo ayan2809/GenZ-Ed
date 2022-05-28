@@ -14,6 +14,22 @@ from django.contrib.auth import authenticate, login, logout
 from . tokens import generate_token
 from database import *
 
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
+
+
+@api_view(['GET'])
+def apiOverview(request):
+    api_urls = {
+            'List': '/GetClassNumbers',
+            # 'Detail View' : '/task-detail/<str:pk>/',
+            'Create1' : '/UpdateClassNumber/',
+            # 'Update' : '/task-update/<str:pk>/',
+            # 'Delete' : '/task-delete/<str:pk>/',
+        }
+    return Response(api_urls)
+
 def index(request):
     return render(request, 'index.html')
 
@@ -78,4 +94,23 @@ def profile(request):
                 return render(request, template_name='studentprofile.html', context={'username': username,'email':email, 'name':fname+" "+lname})
                 
 
-    return render(request, 'activate.html')
+    return render(request, 'profile.html')
+
+
+@api_view(['POST'])
+def UpdateClassNumber(request):
+    username= request.data['username']
+    classNumber= request.data['classNumber']
+    insertClassNumber(username, classNumber)
+    # print(response)
+    # print(request.data)
+    # if response==True:
+    return Response({"message":"success"})
+    # else:
+    #     return Response({"message":"failure"})
+
+@api_view(['POST'])
+def GetClassNumbers(request):
+    # print(request.data)
+    data=getClassNumbers(request.data['username'])
+    return Response({ 'status': 'Fetched', 'data':data})
