@@ -11,7 +11,7 @@ $(".top_navbar .fas").click(function(){
 
 var btn1=document.getElementById("profileButton");
 var btn2 = document.getElementById("classesButton");
-var btn3 = document.getElementById("materialButton");
+var btn3 = document.getElementById("chatbotButton");
 var btn4 = document.getElementById("insightsButton");
 var btn5 = document.getElementById("settingsButton");
 if(btn1!=null){
