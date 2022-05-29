@@ -7,6 +7,10 @@
   <title>GenZ-Ed</title>
   <link rel="stylesheet" href="{% static 'teacherprofile/style.css' %}">
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/1.10.100/pdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.worker.entry.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/1.10.100/pdf.worker.min.js"></script>
+
 
 </head>
 
@@ -178,6 +182,9 @@
                     class="align-middle">Display
                     Classes</span></button>
                 <!-- </div> -->
+                <br>
+                <br>
+                <div id="ClassesDisplayed"></div>
 
 
             </div>
@@ -185,144 +192,174 @@
 
             <div class="inactive" id="item3" style="display:none;">
 
-              <form>
-                <div class="container d-grid mx-auto">
-                  <div class="row row-cols-2">
-                    <div class="d-grid mx-auto">
-                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                        <option selected>Select the Grade</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                      </select>
-                    </div>
-                    <div class="d-grid mx-auto">
-                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                        <option selected>Select the Class Number</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                      </select>
-                    </div>
-
-                    <div class="d-grid mx-auto">
-                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                        <option selected>Select the Course</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                      </select>
-                    </div>
-                    <div class="d-grid mx-auto">
-                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                        <option selected>Select the module</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                      </select>
-                    </div>
+              <!-- <form> -->
+              <div class="container d-grid mx-auto">
+                <div class="row row-cols-2">
+                  <div class="d-grid mx-auto">
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
+                      id="gradeSelector">
+                      <option selected>Select the Grade</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                      <option value="3">Four</option>
+                      <option value="3">Five</option>
+                    </select>
                   </div>
-
-                  <br>
-                  <br>
-
-                  <div>
-                    <label for="formFileLg" class="form-label">Choose the File to Upload</label>
-                    <input class="form-control form-control-lg" id="formFileLg" type="file">
+                  <div class="d-grid mx-auto">
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
+                      id="classNumberSelector">
+                      <option selected>Select the Class Number</option>
+                    </select>
                   </div>
-
-                  <br>
-                  <br>
 
                   <div class="d-grid mx-auto">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
+                      id="courseSelector">
+                      <option selected>Select the Course</option>
+                      <option value="Maths">Maths</option>
+                      <option value="Physics">Physics</option>
+                      <option value="Chemistry">Chemistry</option>
+                      <option value="Biology">Biology</option>
+                    </select>
                   </div>
-              </form>
-            </div>
+                  <div class="d-grid mx-auto">
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
+                      id="moduleSelector">
+                      <option selected>Select the module</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                      <option value="4">Four</option>
+                      <option value="5">Five</option>
+                      <option value="6">Six</option>
+                      <option value="7">Seven</option>
+                    </select>
+                  </div>
+                </div>
 
-            <div class="inactive" id="item4" style="display:none;">
-              Chart Element
-            </div>
+                <br>
+                <br>
 
-            <div class="inactive" id="item5" style="display:none;">
-              Tables Element Text
+                <div>
+                  <label for="formFileLg" class="form-label">Choose the File to Upload</label>
+                  <input class="form-control form-control-lg" id="file-id" type="file" onChange="ExtractText();">
+                  <!-- <input type="file" id="file-id" name="file_name" onchange="ExtractText();"> -->
+                </div>
+
+                <br>
+                <br>
+                <!-- <div id="note-textarea"></div> -->
+                <!-- make a textarea using bootstrap -->
+                <!-- <form class="form-floating"> -->
+                <!-- <input type="text" class="form-control" id="note-textarea" placeholder=""
+                    value="">
+                  <label for="note-textarea">Extracted Text from PDF</label> -->
+                <!-- </form> -->
+
+                <textarea id="note-textarea" placeholder="Upload a pdf" rows="6" cols="85"></textarea>
+                <br>
+                <br>
+                <div class="d-grid mx-auto">
+                  <button type="submit" class="btn btn-primary" id="fileUploadButton">Upload Data</button>
+                </div>
+                <!-- </form> -->
+              </div>
+
+              <div class="inactive" id="item4" style="display:none;">
+                Chart Element
+              </div>
+
+              <div class="inactive" id="item5" style="display:none;">
+                Tables Element Text
+              </div>
             </div>
           </div>
+
         </div>
+        <!-- partial -->
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+        <script src="{% static 'teacherprofile/script.js' %}"></script>
 
-      </div>
-      <!-- partial -->
-      <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
-      <script src="{% static 'teacherprofile/script.js' %}"></script>
-
-      <script type="text/javascript">
-
-        function getCookie(name) {
-          var cookieValue = null;
-          if (document.cookie && document.cookie !== '') {
-            var cookies = document.cookie.split(';');
-            for (var i = 0; i < cookies.length; i++) {
-              var cookie = cookies[i].trim();
-              // Does this cookie string begin with the name we want?
-              if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
+        <script type="text/javascript">
+          //function to make csrf token cookie available to javascript
+          function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+              var cookies = document.cookie.split(';');
+              for (var i = 0; i < cookies.length; i++) {
+                var cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                  cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                  break;
+                }
               }
             }
+            return cookieValue;
           }
-          return cookieValue;
-        }
-        var csrftoken = getCookie('csrftoken');
+          var csrftoken = getCookie('csrftoken');
 
-        var confirmClassButton = document.getElementById('confirmClassButton');
 
-        confirmClassButton.addEventListener('click', function (e) {
-          e.preventDefault();
-          var username = document.getElementById('staticEmail2').value;
-          var classNumber = document.getElementById('inputPassword2').value;
-          if (classNumber == '') {
-            document.getElementById('ErrorMessage').innerHTML = '<div class="alert alert-danger" role="alert">Please enter the class number</div>';
-          }
-          else {
-            document.getElementById('ErrorMessage').innerHTML = '<div class="alert alert-success" role="alert">Data Entered Successfully</div>';
-            var url = '/UpdateClassNumber/';
+          // function to add the class number so that teacher is associated with that class
+          var confirmClassButton = document.getElementById('confirmClassButton');
 
+          confirmClassButton.addEventListener('click', function (e) {
+            e.preventDefault();
+            var username = document.getElementById('staticEmail2').value;
+            var classNumber = document.getElementById('inputPassword2').value;
+            if (classNumber == '') {
+              document.getElementById('ErrorMessage').innerHTML = '<div class="alert alert-danger" role="alert">Please enter the class number</div>';
+            }
+            else {
+              document.getElementById('ErrorMessage').innerHTML = '<div class="alert alert-success" role="alert">Data Entered Successfully</div>';
+              var url = '/UpdateClassNumber/';
+
+              fetch(url, {
+                method: 'POST',
+                headers: {
+                  'Content-type': 'application/json',
+                  'X-CSRFToken': csrftoken,
+                },
+                body: JSON.stringify({ 'username': username, 'classNumber': classNumber }),
+              }).then(response => response.json())
+                .then(data => {
+                  // console.log('Success:', data);
+                })
+              document.getElementById('inputPassword2').value = '';
+
+            }
+
+            // console.log(username, classNumber);
+
+          });
+
+
+          // display class to display all the classes a teacher is associated with
+          displayClassButton.addEventListener('click', function (e) {
+
+            var username = document.getElementById('staticEmail2').value;
+
+            var url = '/GetClassNumbers/'
             fetch(url, {
               method: 'POST',
               headers: {
                 'Content-type': 'application/json',
                 'X-CSRFToken': csrftoken,
               },
-              body: JSON.stringify({ 'username': username, 'classNumber': classNumber }),
+              body: JSON.stringify({ 'username': username }),
             }).then(response => response.json())
               .then(data => {
-                console.log('Success:', data);
+                // console.log(data);
+                // console.log( data.data[0]);
+                var htmlcontent = '';
+                for (var i = 0; i < data.data.length; i++) {
+                  htmlcontent += '<div class="alert alert-success" role="alert">' + data.data[i] + '</div>';
+                }
+                // console.log(htmlcontent);
+                document.getElementById('optionsToBeDisplayed').innerHTML = htmlcontent;
+
               })
-            document.getElementById('inputPassword2').value = '';
-
-          }
-
-          console.log(username, classNumber);
-
-        });
-
-
-        displayClassButton.addEventListener('click', function (e) {
-
-          var username = document.getElementById('staticEmail2').value;
-
-          var url = '/GetClassNumbers/'
-          fetch(url, {
-            method: 'POST',
-            headers: {
-              'Content-type': 'application/json',
-              'X-CSRFToken': csrftoken,
-            },
-            body: JSON.stringify({ 'username': username }),
-          }).then(response => response.json())
-            .then(data => {
-              console.log('Success:', data);
-            })
           });
           // fetch(url)
           //   .then((resp) => resp.json())
@@ -333,9 +370,184 @@
           //   .catch(function (error) {
           //     console.log(error);
           //   });
-        
 
-      </script>
+          // selector which searches for all the class numbers and updates that selector with the options
+          classNumberSelector.addEventListener('click', function (e) {
+
+            var username = document.getElementById('staticEmail2').value;
+            // console.log(username);
+            var url = '/GetClassNumbers/'
+            fetch(url, {
+              method: 'POST',
+              headers: {
+                'Content-type': 'application/json',
+                'X-CSRFToken': csrftoken,
+              },
+              body: JSON.stringify({ 'username': username }),
+            }).then(response => response.json())
+              .then(data => {
+                // console.log(document.getElementById('classNumberSelector').innerHTML.trim());
+                if (document.getElementById('classNumberSelector').innerHTML.trim() == '<option selected="">Select the Class Number</option>') {
+                  document.getElementById('classNumberSelector').innerHTML
+                    = '<option selected>Select the Class Number</option>';
+                  for (var i = 0; i < data.data.length; i++) {
+                    var option = document.createElement("option");
+                    option.text = data.data[i];
+                    document.getElementById('classNumberSelector').add(option);
+                  }
+                }
+
+
+
+              })
+          });
+
+          // extracts the text from the pdf file and displays it in the textarea
+          var datass = '';
+          var DataArr = [];
+          PDFJS.workerSrc = '';
+          function ExtractText() {
+            var input = document.getElementById("file-id");
+            var fReader = new FileReader();
+            fReader.readAsDataURL(input.files[0]);
+            // console.log(input.files[0]);
+            fReader.onloadend = function (event) {
+              convertDataURIToBinary(event.target.result);
+            }
+          }
+
+          var BASE64_MARKER = ';base64,';
+
+          function convertDataURIToBinary(dataURI) {
+
+            var base64Index = dataURI.indexOf(BASE64_MARKER) + BASE64_MARKER.length;
+            var base64 = dataURI.substring(base64Index);
+            var raw = window.atob(base64);
+            var rawLength = raw.length;
+            var array = new Uint8Array(new ArrayBuffer(rawLength));
+
+            for (var i = 0; i < rawLength; i++) {
+              array[i] = raw.charCodeAt(i);
+            }
+            pdfAsArray(array)
+
+          }
+
+          function getPageText(pageNum, PDFDocumentInstance) {
+            // Return a Promise that is solved once the text of the page is retrieven
+            return new Promise(function (resolve, reject) {
+              PDFDocumentInstance.getPage(pageNum).then(function (pdfPage) {
+                // The main trick to obtain the text of the PDF page, use the getTextContent method
+                pdfPage.getTextContent().then(function (textContent) {
+                  var textItems = textContent.items;
+                  var finalString = "";
+
+                  // Concatenate the string of the item to the final string
+                  for (var i = 0; i < textItems.length; i++) {
+                    var item = textItems[i];
+
+                    finalString += item.str + "";
+                  }
+
+                  // Solve promise with the text retrieven from the page
+                  resolve(finalString);
+                });
+              });
+            });
+          }
+
+          function pdfAsArray(pdfAsArray) {
+
+            PDFJS.getDocument(pdfAsArray).then(function (pdf) {
+
+              var pdfDocument = pdf;
+              // Create an array that will contain our promises
+              var pagesPromises = [];
+
+              for (var i = 0; i < pdf.pdfInfo.numPages; i++) {
+                // Required to prevent that i is always the total of pages
+                (function (pageNumber) {
+                  // Store the promise of getPageText that returns the text of a page
+                  pagesPromises.push(getPageText(pageNumber, pdfDocument));
+                })(i + 1);
+              }
+
+              // Execute all the promises
+              Promise.all(pagesPromises).then(function (pagesText) {
+
+                // Display text of all the pages in the console
+                // e.g ["Text content page 1", "Text content page 2", "Text content page 3" ... ]
+                // console.log(pagesText); // representing every single page of PDF Document by array indexing
+                // console.log(pagesText.length);
+                var outputStr = "";
+                for (var pageNum = 0; pageNum < pagesText.length; pageNum++) {
+                  // console.log(pagesText[pageNum]);
+                  outputStr = "";
+                  outputStr = "";
+
+                  var div = document.getElementById('note-textarea');
+
+                  div.value += (outputStr + pagesText[pageNum]);
+
+                }
+
+
+
+
+              });
+
+            }, function (reason) {
+              // PDF loading error
+              console.error(reason);
+            });
+          }
+
+          // uploads the extracted text from pdf to the database
+
+          fileUploadButton.addEventListener('click', function (e) {
+            e.preventDefault();
+            var username = document.getElementById('staticEmail2').value;
+            var gradeNumber = document.getElementById('gradeSelector').value;
+            var classNumber = document.getElementById('classNumberSelector').value;
+            var courseName = document.getElementById('courseSelector').value;
+            var moduleNumber = document.getElementById('moduleSelector').value;
+            var Extractedtext = document.getElementById('note-textarea').value;
+            // console.log(document.getElementById('note-textarea').value);
+            data = {
+              'username': username,
+              'gradeNumber': gradeNumber,
+              'classNumber': classNumber,
+              'courseName': courseName,
+              'moduleNumber': moduleNumber,
+              'Extractedtext': Extractedtext
+            }
+
+            // var file = document.getElementById('formFileLg').value;
+            // var fileName = file.split('\\');
+            // var fileName = fileName[fileName.length - 1];
+            var url = '/UploadExtractedText/';
+            fetch(url, {
+              method: 'POST',
+              headers: {
+                'Content-type': 'application/json',
+                'X-CSRFToken': csrftoken,
+              },
+              body: JSON.stringify(data),
+            }).then(response => response.json())
+              .then(data => {
+                // console.log('Success:', data);
+                document.getElementById('note-textarea').value = '';
+                document.getElementById('file-id').value = '';
+                document.getElementById('file-id').innerHTML = '';
+                
+
+              })
+            
+          });
+
+
+
+        </script>
 
 </body>
 

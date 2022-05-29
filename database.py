@@ -66,3 +66,11 @@ def insertClassNumber(username, classnumber):
 def getClassNumbers(username):
     return client.teacher.teacherCourses.find_one({"username": username})['classnumber']
 
+def insertExtractedText(username,gradeNumber,
+classNumber,courseName,moduleNumber,Extractedtext ):
+    if client.materials.materialDetails.count_documents({"username": username}) == 0:
+        return client.materials.materialDetails.insert_one({"username": username, "gradeNumber": [gradeNumber], "classNumber": [classNumber], "courseName": [courseName], "moduleNumber": [moduleNumber], "Extractedtext": [Extractedtext]})
+    else:
+        return client.materials.materialDetails.update_one({"username": username}, {"$push": {"gradeNumber": gradeNumber, "classNumber": classNumber, "courseName": courseName, "moduleNumber": moduleNumber, "Extractedtext": Extractedtext}})
+    return True;
+

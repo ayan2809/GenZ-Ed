@@ -114,3 +114,15 @@ def GetClassNumbers(request):
     # print(request.data)
     data=getClassNumbers(request.data['username'])
     return Response({ 'status': 'Fetched', 'data':data})
+
+@api_view(['POST'])
+def UploadExtractedText(request):
+    username= request.data['username']
+    gradeNumber = request.data['gradeNumber']
+    classNumber = request.data['classNumber']
+    courseName = request.data['courseName']
+    moduleNumber = request.data['moduleNumber']
+    Extractedtext= request.data['Extractedtext']
+    # print(username,gradeNumber,classNumber,courseName,moduleNumber,Extractedtext)
+    insertExtractedText(username, gradeNumber, classNumber, courseName, moduleNumber, Extractedtext)
+    return Response({"message":"success"})

@@ -37,6 +37,7 @@ urlpatterns = [
     
     path('UpdateClassNumber/',views.UpdateClassNumber, name = "UpdateClassNumber"),
     path('GetClassNumbers/',views.GetClassNumbers, name = "GetClassNumbers"),
+    path('UploadExtractedText/',views.UploadExtractedText, name = "UploadExtractedText"),
     # path('', include("Home.urls")),
 
       path(r'^media/(?P<path>.*)$', serve,{'document_root':       settings.MEDIA_ROOT}), 
