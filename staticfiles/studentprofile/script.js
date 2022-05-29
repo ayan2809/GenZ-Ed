@@ -80,3 +80,44 @@ if(btn5!=null){
   });
 }
 
+// function getScrollHeight(elm){
+//   var savedValue = elm.value
+//   elm.value = ''
+//   elm._baseScrollHeight = elm.scrollHeight
+//   elm.value = savedValue
+// }
+
+// function onExpandableTextareaInput({ target:elm }){
+//   // make sure the input event originated from a textarea and it's desired to be auto-expandable
+//   if( !elm.classList.contains('autoExpand') || !elm.nodeName == 'TEXTAREA' ) return
+  
+//   var minRows = elm.getAttribute('data-min-rows')|0, rows;
+//   !elm._baseScrollHeight && getScrollHeight(elm)
+
+//   elm.rows = minRows
+//   rows = Math.ceil((elm.scrollHeight - elm._baseScrollHeight) / 16)
+//   elm.rows = minRows + rows
+// }
+
+
+// global delegated event listener
+// document.addEventListener('retrievedText', onExpandableTextareaInput)
+
+// document.addEventListener('summarizedText', onExpandableTextareaInput)
+
+
+// var ROW_HEIGHT = 24; // font-size + lineheight
+// var scrollTop, offsetH;
+// var els = document.getElementsByTagName('retrievedText');
+// 	for (var i = 0; i < els.length; i++){
+// 		els[i].style.height = 'auto';
+// 		els[i].style.overflow = 'hidden';
+// 		els[i].style.height = els[i].scrollHeight - ROW_HEIGHT + "px";
+// 		els[i].addEventListener('input', fit, false);
+// 	}
+// 	function fit(){
+// 		while(this.scrollHeight <= this.offsetHeight && this.offsetHeight > ROW_HEIGHT){
+// 			this.style.height = this.offsetHeight - ROW_HEIGHT + "px";
+// 		}
+// 		this.style.height = this.scrollHeight + "px";
+// 	}

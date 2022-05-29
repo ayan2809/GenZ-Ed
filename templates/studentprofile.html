@@ -242,20 +242,27 @@
                 <!-- </form> -->
                 <br>
                 <br>
-                <input class="form-control overflow-hidden" type="text" id="retrievedText" value="Retrieved Text..."
-                  aria-label="readonly input example" readonly>
+                <!-- <input class="form-control overflow-hidden" type="text" id="retrievedText" value="Retrieved Text..."
+                  aria-label="readonly input example" readonly> -->
+
+                  <textarea class='autoExpand' rows='3' cols="75"  id="retrievedText" data-min-rows='3'  placeholder='Summarized Text...' autofocus ></textarea>  
+
                 <div id='ErrorMessage'></div>
+                
                 <br>
                 <br>
-                <div class="d-grid mx-auto">
+                <!-- <div class="d-grid mx-auto"> -->
                   <button type="submit" class="btn btn-primary" id="getSummary">Get Summary</button>
-                </div>
+                <!-- </div> -->
                 <br>
                 <br>
-                <input class="form-control" type="text" id="summarizedText" value="Summarized Text..."
-                  aria-label="readonly input example" readonly>
+                <br>
+               
+                <!-- <input class="form-control" type="text" id="summarizedText" value="Summarized Text..."
+                  aria-label="readonly input example" readonly> -->
 
-
+                  <textarea class='autoExpand' rows='3' cols="75"  id="summarizedText" data-min-rows='3'  placeholder='Summarized Text...' autofocus ></textarea>
+                  
                 <div class="chatbot chatbot--closed">
                   <div class="chatbot__header">
                     <p><strong>Got a question on the topics?</strong> <span class="u-text-highlight">Ask Botra</span>
@@ -519,8 +526,8 @@
               body: JSON.stringify({ 'text': retrievedText }),
             }).then(response => response.json())
               .then(data => {
-                // console.log('Success:', data);
-                document.getElementById('summarizedText').value=data.data;
+                console.log('Success:', data);
+                document.getElementById('summarizedText').value=data['message']
                 
               })
           });

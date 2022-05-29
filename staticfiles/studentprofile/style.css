@@ -218,3 +218,20 @@
   width: calc(100% - 80px);
   margin-left: 80px;
 }
+
+/* textarea {
+  display: block;
+  box-sizing: padding-box;
+  overflow: hidden;
+  padding: 10px;
+  width: 250px;
+  font-size: 14px;
+  margin: 50px auto;
+  border-radius: 6px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+  border: 0;
+}
+textarea:focus {
+  border: none;
+  outline: none;
+} */
