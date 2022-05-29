@@ -57,7 +57,6 @@ def getStudentLname(username):
     return client.student.users.find_one({"username": username})['lastname']
 
 def insertClassNumber(username, classnumber):
-    # return client.teacher.users.update({"username": username}, {"$set": {"classnumber": classnumber}})
     if client.teacher.teacherCourses.count_documents({"username": username}) == 0:
         return client.teacher.teacherCourses.insert_one({"username": username, "classnumber": [classnumber]})
     else:
@@ -68,9 +67,22 @@ def getClassNumbers(username):
 
 def insertExtractedText(username,gradeNumber,
 classNumber,courseName,moduleNumber,Extractedtext ):
-    if client.materials.materialDetails.count_documents({"username": username}) == 0:
-        return client.materials.materialDetails.insert_one({"username": username, "gradeNumber": [gradeNumber], "classNumber": [classNumber], "courseName": [courseName], "moduleNumber": [moduleNumber], "Extractedtext": [Extractedtext]})
+    if client.materials.materialDetails.count_documents({"username": username, "gradeNumber": gradeNumber, "classNumber": classNumber, "courseName": courseName, "moduleNumber": moduleNumber}) == 0:
+        return client.materials.materialDetails.insert_one({"username": username, "gradeNumber": gradeNumber, "classNumber": classNumber, "courseName": courseName, "moduleNumber": moduleNumber, "Extractedtext": [Extractedtext]})
+        
     else:
-        return client.materials.materialDetails.update_one({"username": username}, {"$push": {"gradeNumber": gradeNumber, "classNumber": classNumber, "courseName": courseName, "moduleNumber": moduleNumber, "Extractedtext": Extractedtext}})
-    return True;
+        return client.materials.materialDetails.update_one({"username": username,"gradeNumber": gradeNumber, "classNumber": classNumber, "courseName": courseName, "moduleNumber": moduleNumber}, {"$push":{"Extractedtext": Extractedtext}})
+    return True
+
+def insertClassNumberStudent(username, classnumber):
+    if client.student.studentCourses.count_documents({"username": username}) == 0:
+        return client.student.studentCourses.insert_one({"username": username, "classnumber": [classnumber]})
+    else:
+        return client.student.studentCourses.update_one({"username": username}, {"$push": {"classnumber": classnumber}})
+
+def getClassNumbersStudent(username):
+    return client.student.studentCourses.find_one({"username": username})['classnumber']
+
+def fetchUploadedMaterial( gradeNumber, classNumber, courseName, moduleNumber):
+    return client.materials.materialDetails.find_one({"gradeNumber": gradeNumber, "classNumber": classNumber, "courseName": courseName, "moduleNumber": moduleNumber})
 

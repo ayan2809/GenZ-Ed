@@ -30,14 +30,16 @@ urlpatterns = [
     path('UpdateClassNumber', views.UpdateClassNumber, name = 'UpdateClassNumber'),
     path('signup', views.signup, name='signup'),
     path('profile', views.profile, name='profile'),
-    # path('teacherprofile', views.teacherprofile, name='teacherprofile'),
-    # path('studentprofile', views.studentprofile, name='studentprofile'),
     path('logout', views.logout, name='logout'),
     path('failure', views.failure, name='failure'),
     
     path('UpdateClassNumber/',views.UpdateClassNumber, name = "UpdateClassNumber"),
     path('GetClassNumbers/',views.GetClassNumbers, name = "GetClassNumbers"),
     path('UploadExtractedText/',views.UploadExtractedText, name = "UploadExtractedText"),
+    path('UpdateClassNumberStudent/',views.UpdateClassNumberStudent, name = "UpdateClassNumberStudent"),
+    path('GetClassNumbersStudent/',views.GetClassNumbersStudent, name = "GetClassNumbersStudent"),
+    path('FetchUploadedMaterial/',views.FetchUploadedMaterial, name = "FetchUploadedMaterial"),
+    path('GetSummary/',views.GetSummary, name = "GetSummary"),
     # path('', include("Home.urls")),
 
       path(r'^media/(?P<path>.*)$', serve,{'document_root':       settings.MEDIA_ROOT}), 

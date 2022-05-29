@@ -126,3 +126,32 @@ def UploadExtractedText(request):
     # print(username,gradeNumber,classNumber,courseName,moduleNumber,Extractedtext)
     insertExtractedText(username, gradeNumber, classNumber, courseName, moduleNumber, Extractedtext)
     return Response({"message":"success"})
+
+@api_view(['POST'])
+def UpdateClassNumberStudent(request):
+    username= request.data['username']
+    classNumber= request.data['classNumber']
+    insertClassNumberStudent(username, classNumber)
+    return Response({"message":"success"})
+
+@api_view(['POST'])
+def GetClassNumbersStudent(request):
+    print(request.data)
+    data=getClassNumbersStudent(request.data['username'])
+    return Response({ 'status': 'Fetched', 'data':data})
+
+@api_view(['POST'])
+def FetchUploadedMaterial(request):
+    # print(request.data)
+    data=fetchUploadedMaterial(request.data['gradeNumber'],request.data['classNumber'],request.data['courseName'],request.data['moduleNumber'])
+
+    data= data['Extractedtext']
+
+    return Response({ 'status': 'Fetched', 'data':data})
+
+@api_view(['POST'])
+def GetSummary(request):
+    data=request.data['text']
+
+    # print(data)
+    return Response({ 'status': 'Fetched', 'data':data})
