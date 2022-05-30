@@ -185,7 +185,7 @@ def chatBotReply(request):
     documents=[ data],
     examples_context="World War 2",
     examples=[["When did the german invasion happen?","It happened in 1939"]],
-    max_tokens=5,
+    max_tokens=50,
     stop=["\n", "<|endoftext|>"],
     )
     # print(response)
