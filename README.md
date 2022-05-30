@@ -1,8 +1,20 @@
-# GenZ Ed
+ ![Logo](https://genz-ed.herokuapp.com/static/landing/images/logo2.svg)
 
-An interative web application for helping the students with their queries while learning.
 
-In this application, the educator can upload a learning material in the form of text or a document(pdf) as data source. The students would be able to access this document and ask their queries in a chatbox, powered by GPT-3. Further, the students can request a summarised form of the data, which would again be fetched using a GPT-3 API.
+An interactive web application ideally suited for narrowing the gap between student and educator. We also touch upon one of the major problems in the path of learning that sometimes students may not get the proper guidance due to any reasons that might include network issues in rural areas. 
+
+We are introducing features to our web application both for educators and students end. 
+- The educator can upload a learning material in the form of text or a document(pdf) as a data source. 
+- The students would be able to access this document and ask their queries in a chatbox, powered by GPT-3.
+- Further, the students have the access to the tool where a student basically can request a simplifier form of translation to the complex data, which would again be fetched using a GPT-3 API. 
+- Through this application, educators will get to know the top 5 subtopics that are common where students are facing issues.
+
+Our application is loaded with features which ease the experience for both educator and students which includes:
+Interactive, Responsive, Open AI GPT-3, ML Based, Robust, Metrics, Analysing Text and Scalable
+
+This application provides real-time updates based on the usage of the applications from the student's end, which will ease educators in understanding students' behaviour of learning. 
+
+
 
 ### Installing in Windows
 
