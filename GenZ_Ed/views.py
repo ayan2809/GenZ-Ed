@@ -1,3 +1,4 @@
+from select import select
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import render, redirect
@@ -177,6 +178,11 @@ def GetSummary(request):
 def chatBotReply(request):
     data=request.data['text']
     query=request.data['query']
+    username= request.data['username']
+    gradeNumber = request.data['gradeNumber']
+    classNumber = request.data['classNumber']
+    courseName = request.data['courseName']
+    moduleNumber = request.data['moduleNumber']
     # print(data, query)
     response = openai.Answer.create(
     search_model="ada",
@@ -188,7 +194,9 @@ def chatBotReply(request):
     max_tokens=50,
     stop=["\n", "<|endoftext|>"],
     )
-    # print(response)
+    selected_text= response['selected_documents'][0]
+    selected_text =selected_text['text']
+    insertQuestionData(username, gradeNumber, classNumber, courseName, moduleNumber, query, selected_text)
     # documents=[data],
     # query="When did the german invasion happen?"
     # )

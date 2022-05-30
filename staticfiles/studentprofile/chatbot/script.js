@@ -1,6 +1,6 @@
 const accessToken = '3796899bd37c423bad3a21a25277bce0';
 const baseUrl = 'https://api.api.ai/api/query?v=2015091001';
-const apiUrl= '/chatBotReply/';
+const apiUrl = '/chatBotReply/';
 const sessionId = '20150910';
 const loader = `<span class='loader'><span class='loader__dot'></span><span class='loader__dot'></span><span class='loader__dot'></span></span>`;
 const errorMessage = 'My apologies, I\'m not avail at the moment, however, feel free to call our support team directly 0123456789.';
@@ -201,6 +201,12 @@ function getCookie(name) {
 var csrftoken = getCookie('csrftoken');
 
 const send = (text = '') => {
+  var username = document.getElementById('staticEmail2').value;
+  var gradeNumber = document.getElementById('gradeSelector').value;
+  var classNumber = document.getElementById('classNumberSelector').value;
+  var courseName = document.getElementById('courseSelector').value;
+  var moduleNumber = document.getElementById('moduleSelector').value;
+
   fetchedText = document.getElementById("retrievedText").value;
   fetch(`${apiUrl}`, {
 
@@ -210,18 +216,23 @@ const send = (text = '') => {
       'X-CSRFToken': csrftoken,
     },
     body: JSON.stringify({
+      'username': username,
+      'gradeNumber': gradeNumber,
+      'classNumber': classNumber,
+      'courseName': courseName,
+      'moduleNumber': moduleNumber,
       'text': fetchedText,
       'query': text
     })
   })
     .then(res => res.json()).
-      then(res => {
-        if (res.status < 200 || res.status >= 300) {
-          let error = new Error(res.statusText);
-          throw error;
-        }
-        return res;
-      })
+    then(res => {
+      if (res.status < 200 || res.status >= 300) {
+        let error = new Error(res.statusText);
+        throw error;
+      }
+      return res;
+    })
     .then(res => {
       console.log(res['answers']);
       setResponse(res['answers'], botLoadingDelay + botReplyDelay);
@@ -231,7 +242,7 @@ const send = (text = '') => {
       resetInputField();
       console.log(error);
     });
-    aiMessage(loader, true, botLoadingDelay);
+  aiMessage(loader, true, botLoadingDelay);
 };
 
 // fetch(`${baseUrl}&query=${text}&lang=en&sessionId=${sessionId}`, {

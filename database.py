@@ -86,3 +86,13 @@ def getClassNumbersStudent(username):
 def fetchUploadedMaterial( gradeNumber, classNumber, courseName, moduleNumber):
     return client.materials.materialDetails.find_one({"gradeNumber": gradeNumber, "classNumber": classNumber, "courseName": courseName, "moduleNumber": moduleNumber})
 
+
+def insertQuestionData(username, gradeNumber, classNumber, courseName, moduleNumber, query, selected_text):
+    if client.materials.questions.count_documents({"username": username, "gradeNumber": gradeNumber, "classNumber": classNumber, "courseName": courseName, "moduleNumber": moduleNumber}) == 0:
+        return client.materials.questions.insert_one({"username": username, "gradeNumber": gradeNumber, "classNumber": classNumber, "courseName": courseName, "moduleNumber": moduleNumber, "questions": [{"question": query, "selected_text": selected_text}]})
+    else:
+        return client.materials.questions.update_one({"username": username,"gradeNumber": gradeNumber, "classNumber": classNumber, "courseName": courseName, "moduleNumber": moduleNumber}, {"$push":{"questions": {"question": query, "selected_text": selected_text}}})
+
+def fetchQuestionsByStudents(gradeNumber, classNumber, courseName, moduleNumber):
+    return client.materials.questions.find_one({"gradeNumber": gradeNumber, "classNumber": classNumber, "courseName": courseName, "moduleNumber": moduleNumber})
+
