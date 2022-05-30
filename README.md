@@ -1,5 +1,4 @@
- ![Logo](https://genz-ed.herokuapp.com/static/landing/images/logo2.svg)
-
+![Logo](https://user-images.githubusercontent.com/42286904/171036981-cb222a42-b84e-4854-a958-ffa6c3c081b9.svg)
 
 An interactive web application ideally suited for narrowing the gap between student and educator. We also touch upon one of the major problems in the path of learning that sometimes students may not get the proper guidance due to any reasons that might include network issues in rural areas. 
 
