@@ -1,5 +1,6 @@
 const accessToken = '3796899bd37c423bad3a21a25277bce0';
 const baseUrl = 'https://api.api.ai/api/query?v=2015091001';
+const apiUrl= '/chatBotReply/';
 const sessionId = '20150910';
 const loader = `<span class='loader'><span class='loader__dot'></span><span class='loader__dot'></span><span class='loader__dot'></span></span>`;
 const errorMessage = 'My apologies, I\'m not avail at the moment, however, feel free to call our support team directly 0123456789.';
@@ -12,7 +13,7 @@ const $chatbotMessages = $document.querySelector('.chatbot__messages');
 const $chatbotInput = $document.querySelector('.chatbot__input');
 const $chatbotSubmit = $document.querySelector('.chatbot__submit');
 
-const botLoadingDelay = 1000;
+const botLoadingDelay = 2000;
 const botReplyDelay = 2000;
 
 document.addEventListener('keypress', event => {
@@ -30,7 +31,7 @@ $chatbotSubmit.addEventListener('click', () => {
 
 const toggle = (element, klass) => {
   const classes = element.className.match(/\S+/g) || [],
-  index = classes.indexOf(klass);
+    index = classes.indexOf(klass);
   index >= 0 ? classes.splice(index, 1) : classes.push(klass);
   element.className = classes.join(' ');
 };
@@ -69,12 +70,12 @@ const removeLoader = () => {
 
 const escapeScript = unsafe => {
   const safeString = unsafe.
-  replace(/</g, ' ').
-  replace(/>/g, ' ').
-  replace(/&/g, ' ').
-  replace(/"/g, ' ').
-  replace(/\\/, ' ').
-  replace(/\s+/g, ' ');
+    replace(/</g, ' ').
+    replace(/>/g, ' ').
+    replace(/&/g, ' ').
+    replace(/"/g, ' ').
+    replace(/\\/, ' ').
+    replace(/\s+/g, ' ');
   return safeString.trim();
 };
 
@@ -151,7 +152,8 @@ const processResponse = val => {
             let encodedText = reply.replace(/'/g, 'zzz');
             output += `<button onclick='multiChoiceAnswer("${encodedText}")'>${reply}</button>`;
           }
-          break;}
+          break;
+      }
 
     }
 
@@ -160,7 +162,7 @@ const processResponse = val => {
   }
 
   removeLoader();
-  return `<p>${errorMessage}</p>`;
+  return `<p>${val}</p>`;
 };
 
 const setResponse = (val, delay = 0) => {
@@ -175,37 +177,89 @@ const resetInputField = () => {
 
 const scrollDown = () => {
   const distanceToScroll =
-  $chatbotMessageWindow.scrollHeight - (
-  $chatbotMessages.lastChild.offsetHeight + 60);
+    $chatbotMessageWindow.scrollHeight - (
+      $chatbotMessages.lastChild.offsetHeight + 60);
   $chatbotMessageWindow.scrollTop = distanceToScroll;
   return false;
 };
 
-const send = (text = '') => {
-  fetch(`${baseUrl}&query=${text}&lang=en&sessionId=${sessionId}`, {
-    method: 'GET',
-    dataType: 'json',
-    headers: {
-      Authorization: 'Bearer ' + accessToken,
-      'Content-Type': 'application/json; charset=utf-8' } }).
-
-
-  then(response => response.json()).
-  then(res => {
-    if (res.status < 200 || res.status >= 300) {
-      let error = new Error(res.statusText);
-      throw error;
+function getCookie(name) {
+  var cookieValue = null;
+  if (document.cookie && document.cookie !== '') {
+    var cookies = document.cookie.split(';');
+    for (var i = 0; i < cookies.length; i++) {
+      var cookie = cookies[i].trim();
+      // Does this cookie string begin with the name we want?
+      if (cookie.substring(0, name.length + 1) === (name + '=')) {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
     }
-    return res;
-  }).
-  then(res => {
-    setResponse(res.result, botLoadingDelay + botReplyDelay);
-  }).
-  catch(error => {
-    setResponse(errorMessage, botLoadingDelay + botReplyDelay);
-    resetInputField();
-    console.log(error);
-  });
+  }
+  return cookieValue;
+}
+var csrftoken = getCookie('csrftoken');
 
-  aiMessage(loader, true, botLoadingDelay);
+const send = (text = '') => {
+  fetchedText = document.getElementById("retrievedText").value;
+  fetch(`${apiUrl}`, {
+
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRFToken': csrftoken,
+    },
+    body: JSON.stringify({
+      'text': fetchedText,
+      'query': text
+    })
+  })
+    .then(res => res.json()).
+      then(res => {
+        if (res.status < 200 || res.status >= 300) {
+          let error = new Error(res.statusText);
+          throw error;
+        }
+        return res;
+      })
+    .then(res => {
+      console.log(res['answers']);
+      setResponse(res['answers'], botLoadingDelay + botReplyDelay);
+    })
+    .catch(err => {
+      setResponse(errorMessage, botLoadingDelay + botReplyDelay);
+      resetInputField();
+      console.log(error);
+    });
+    aiMessage(loader, true, botLoadingDelay);
 };
+
+// fetch(`${baseUrl}&query=${text}&lang=en&sessionId=${sessionId}`, {
+//   method: 'GET',
+//   dataType: 'json',
+//   headers: {
+//     Authorization: 'Bearer ' + accessToken,
+//     'Content-Type': 'application/json; charset=utf-8'
+//   }
+// }).
+
+
+//   then(response => response.json()).
+//   then(res => {
+//     if (res.status < 200 || res.status >= 300) {
+//       let error = new Error(res.statusText);
+//       throw error;
+//     }
+//     return res;
+//   }).
+//   then(res => {
+//     setResponse(res.result, botLoadingDelay + botReplyDelay);
+//   }).
+//   catch(error => {
+//     setResponse(errorMessage, botLoadingDelay + botReplyDelay);
+//     resetInputField();
+//     console.log(error);
+//   });
+
+// aiMessage(loader, true, botLoadingDelay);
+// };

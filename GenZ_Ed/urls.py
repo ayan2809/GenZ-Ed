@@ -40,6 +40,7 @@ urlpatterns = [
     path('GetClassNumbersStudent/',views.GetClassNumbersStudent, name = "GetClassNumbersStudent"),
     path('FetchUploadedMaterial/',views.FetchUploadedMaterial, name = "FetchUploadedMaterial"),
     path('GetSummary/',views.GetSummary, name = "GetSummary"),
+    path('chatBotReply/', views.chatBotReply, name = 'chatBotReply'),
     # path('', include("Home.urls")),
 
       path(r'^media/(?P<path>.*)$', serve,{'document_root':       settings.MEDIA_ROOT}), 

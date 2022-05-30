@@ -176,6 +176,22 @@ def GetSummary(request):
 @api_view(['POST'])
 def chatBotReply(request):
     data=request.data['text']
+    query=request.data['query']
+    # print(data, query)
+    response = openai.Answer.create(
+    search_model="ada",
+    model="curie",
+    question=query,
+    documents=[ data],
+    examples_context="World War 2",
+    examples=[["When did the german invasion happen?","It happened in 1939"]],
+    max_tokens=5,
+    stop=["\n", "<|endoftext|>"],
+    )
+    # print(response)
+    # documents=[data],
+    # query="When did the german invasion happen?"
+    # )
     # print(openai.api_key)
     # print(data)
     # response = openai.Completion.create(
@@ -188,7 +204,9 @@ def chatBotReply(request):
     # presence_penalty=0.0
     # )
     # print(response)
-    return Response({"message":"success"})
+    return Response({
+    "status":200,"message":"success",
+    "answers":response['answers'][0]})
 
 
 
