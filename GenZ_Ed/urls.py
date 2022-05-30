@@ -41,9 +41,8 @@ urlpatterns = [
     path('FetchUploadedMaterial/',views.FetchUploadedMaterial, name = "FetchUploadedMaterial"),
     path('GetSummary/',views.GetSummary, name = "GetSummary"),
     path('chatBotReply/', views.chatBotReply, name = 'chatBotReply'),
-    # path('', include("Home.urls")),
-
-      path(r'^media/(?P<path>.*)$', serve,{'document_root':       settings.MEDIA_ROOT}), 
+    path('GetQuestions/', views.GetQuestions, name = 'GetQuestions'),
+    path(r'^media/(?P<path>.*)$', serve,{'document_root':       settings.MEDIA_ROOT}), 
     path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}), 
 ]
 
